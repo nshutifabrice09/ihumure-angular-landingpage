@@ -1,1 +1,211 @@
-<p>landing-page works!</p>
+<!-- Main Container -->
+<div class="ihumure-container">
+  
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/>
+          <path d="M20 12 C25 12, 28 15, 28 20 C28 25, 25 28, 20 28 C15 28, 12 25, 12 20 C12 15, 15 12, 20 12" fill="currentColor" opacity="0.3"/>
+          <circle cx="20" cy="20" r="4" fill="currentColor"/>
+        </svg>
+      </div>
+      <span class="logo-text">Ihumure</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="#services" (click)="scrollToSection('services', $event)">Serivisi</a>
+      <a href="#community" (click)="scrollToSection('community', $event)">Umuryango</a>
+      <a href="#resources" (click)="scrollToSection('resources', $event)">Ubufasha</a>
+      <a href="#about" (click)="scrollToSection('about', $event)">Abo turi</a>
+      <button class="btn-primary" (click)="onLogin()">Injira</button>
+    </div>
+
+    <button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+      <span class="menu-icon"></span>
+    </button>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header class="hero">
+    <div class="hero-content">
+      
+      <div class="hero-left">
+        <h1 class="hero-title">
+          <span class="title-line">Ubuzima bwo</span>
+          <span class="title-line accent">mu mutwe</span>
+          <span class="title-line">ni ingenzi</span>
+        </h1>
+
+        <p class="hero-description">
+          Ihumure ni urubuga rw'umwijima rutanga ubufasha mu buzima bwo mu mutwe 
+          n'umuryango ushyigikira abantu b'u Rwanda. Turafasha gutanga ubufasha 
+          bunoze, ubujyanama, n'umuryango w'ubwigenge.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn-hero-primary" (click)="onStartNow()">Tangira ubu</button>
+          <button class="btn-hero-secondary" (click)="onLearnMore()">Menya byinshi</button>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-number">{{ stats.peopleHelped }}+</div>
+            <div class="stat-label">Abantu bafashijwe</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">{{ stats.counselors }}+</div>
+            <div class="stat-label">Abajyanama</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">{{ stats.availability }}</div>
+            <div class="stat-label">Ubufasha</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-visual">
+          <div class="visual-circle circle-1"></div>
+          <div class="visual-circle circle-2"></div>
+          <div class="visual-circle circle-3"></div>
+
+          <div class="hero-card card-1">
+            <div class="card-icon">💚</div>
+            <div class="card-text">Ubufasha bw'uburyo</div>
+          </div>
+          <div class="hero-card card-2">
+            <div class="card-icon">🤝</div>
+            <div class="card-text">Umuryango w'ubwigenge</div>
+          </div>
+          <div class="hero-card card-3">
+            <div class="card-icon">🌟</div>
+            <div class="card-text">Ubuzima bwiza</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SERVICES SECTION -->
+  <section class="services" id="services">
+    <div class="section-header">
+      <h2 class="section-title">Serivisi zacu</h2>
+      <p class="section-subtitle">
+        Turatanga serivisi zitandukanye zo gufasha ubuzima bwawe bwo mu mutwe
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card" *ngFor="let service of services">
+        <div class="service-icon" [innerHTML]="service.icon"></div>
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY SECTION -->
+  <section class="community" id="community">
+    <div class="community-content">
+      
+      <div class="community-left">
+        <h2 class="section-title">Umuryango wacu</h2>
+        <p class="community-text">
+          Ihumure ni ukwikuramo aho abantu bahura, basangira, kandi bashyigikirane. 
+          Umuryango wacu urakomeye kandi ugizwe n'abantu bafite ibibazo bitandukanye 
+          ariko bafite intego imwe - kubaka ubuzima bwiza bwo mu mutwe.
+        </p>
+
+        <ul class="community-features">
+          <li *ngFor="let feature of communityFeatures">
+            <span class="feature-icon">✓</span>
+            <span>{{ feature }}</span>
+          </li>
+        </ul>
+
+        <button class="btn-community" (click)="onJoinCommunity()">Jya mu muryango</button>
+      </div>
+
+      <div class="community-right">
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">{{ testimonial.text }}</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">{{ testimonial.authorInitial }}</div>
+            <div class="author-info">
+              <div class="author-name">{{ testimonial.authorName }}</div>
+              <div class="author-location">{{ testimonial.location }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta">
+    <div class="cta-content">
+      <h2 class="cta-title">Tangira urugendo rwawe rwo kwita ku buzima bwawe bwo mu mutwe</h2>
+      <p class="cta-text">Jya muri Ihumure ubu kandi utangire kubona ubufasha ukeneye</p>
+      <button class="btn-cta" (click)="onCreateAccount()">Fungura konti yawe</button>
+    </div>
+    <div class="cta-pattern"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      
+      <div class="footer-column">
+        <div class="footer-logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/>
+              <circle cx="20" cy="20" r="4" fill="currentColor"/>
+            </svg>
+          </div>
+          <span class="logo-text">Ihumure</span>
+        </div>
+        <p class="footer-description">
+          Ubufasha mu buzima bwo mu mutwe n'umuryango ushyigikira abantu b'u Rwanda.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Serivisi</h4>
+        <ul>
+          <li><a href="#" (click)="navigateTo('counseling', $event)">Ubujyanama</a></li>
+          <li><a href="#" (click)="navigateTo('groups', $event)">Amatsinda</a></li>
+          <li><a href="#" (click)="navigateTo('resources', $event)">Amakuru</a></li>
+          <li><a href="#" (click)="navigateTo('tools', $event)">Ibikoresho</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Kumenyekanisha</h4>
+        <ul>
+          <li><a href="#" (click)="navigateTo('about', $event)">Abo turi</a></li>
+          <li><a href="#" (click)="navigateTo('team', $event)">Ikipe</a></li>
+          <li><a href="#" (click)="navigateTo('press', $event)">Amakuru y'itangazamakuru</a></li>
+          <li><a href="#" (click)="navigateTo('contact', $event)">Twandikire</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Dufatanye</h4>
+        <ul>
+          <li><a href="mailto:contact@ihumure.rw">contact@ihumure.rw</a></li>
+          <li><a href="tel:+250788000000">+250 788 000 000</a></li>
+          <li><a>Kigali, Rwanda</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {{ currentYear }} Ihumure. Uburenganzira bwose burahawe.</p>
+    </div>
+  </footer>
+
+</div>
