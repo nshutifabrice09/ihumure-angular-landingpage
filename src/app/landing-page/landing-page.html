@@ -1,5 +1,5 @@
 <!-- Main Container -->
-<div class="ihumure-container">
+<div class="ihumure-container" [attr.data-theme]="currentTheme">
   
   <!-- NAVIGATION BAR -->
   <nav class="navbar">
@@ -15,11 +15,33 @@
     </div>
 
     <div class="nav-links">
-      <a href="#services" (click)="scrollToSection('services', $event)">Serivisi</a>
-      <a href="#community" (click)="scrollToSection('community', $event)">Umuryango</a>
-      <a href="#resources" (click)="scrollToSection('resources', $event)">Ubufasha</a>
-      <a href="#about" (click)="scrollToSection('about', $event)">Abo turi</a>
-      <button class="btn-primary" (click)="onLogin()">Injira</button>
+      <a href="#services" (click)="scrollToSection('services', $event)">
+        {{ currentLang === 'rw' ? 'Serivisi' : 'Services' }}
+      </a>
+      <a href="#community" (click)="scrollToSection('community', $event)">
+        {{ currentLang === 'rw' ? 'Umuryango' : 'Community' }}
+      </a>
+      <a href="#resources" (click)="scrollToSection('resources', $event)">
+        {{ currentLang === 'rw' ? 'Ubufasha' : 'Resources' }}
+      </a>
+      <a href="#about" (click)="scrollToSection('about', $event)">
+        {{ currentLang === 'rw' ? 'Abo turi' : 'About Us' }}
+      </a>
+      
+      <!-- Theme Toggle -->
+      <button class="theme-toggle" (click)="toggleTheme()" [title]="currentTheme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'">
+        <span *ngIf="currentTheme === 'light'">🌙</span>
+        <span *ngIf="currentTheme === 'dark'">☀️</span>
+      </button>
+      
+      <!-- Language Toggle -->
+      <button class="lang-toggle" (click)="toggleLanguage()">
+        {{ currentLang === 'rw' ? 'EN' : 'RW' }}
+      </button>
+      
+      <button class="btn-primary" (click)="onLogin()">
+        {{ currentLang === 'rw' ? 'Injira' : 'Login' }}
+      </button>
     </div>
 
     <button class="mobile-menu-btn" (click)="toggleMobileMenu()">
@@ -33,34 +55,36 @@
       
       <div class="hero-left">
         <h1 class="hero-title">
-          <span class="title-line">Ubuzima bwo</span>
-          <span class="title-line accent">mu mutwe</span>
-          <span class="title-line">ni ingenzi</span>
+          <span class="title-line">{{ translations[currentLang].hero.title1 }}</span>
+          <span class="title-line accent">{{ translations[currentLang].hero.title2 }}</span>
+          <span class="title-line">{{ translations[currentLang].hero.title3 }}</span>
         </h1>
 
         <p class="hero-description">
-          Ihumure ni urubuga rw'umwijima rutanga ubufasha mu buzima bwo mu mutwe 
-          n'umuryango ushyigikira abantu b'u Rwanda. Turafasha gutanga ubufasha 
-          bunoze, ubujyanama, n'umuryango w'ubwigenge.
+          {{ translations[currentLang].hero.description }}
         </p>
 
         <div class="hero-actions">
-          <button class="btn-hero-primary" (click)="onStartNow()">Tangira ubu</button>
-          <button class="btn-hero-secondary" (click)="onLearnMore()">Menya byinshi</button>
+          <button class="btn-hero-primary" (click)="onStartNow()">
+            {{ translations[currentLang].hero.startButton }}
+          </button>
+          <button class="btn-hero-secondary" (click)="onLearnMore()">
+            {{ translations[currentLang].hero.learnButton }}
+          </button>
         </div>
 
         <div class="hero-stats">
           <div class="stat">
             <div class="stat-number">{{ stats.peopleHelped }}+</div>
-            <div class="stat-label">Abantu bafashijwe</div>
+            <div class="stat-label">{{ translations[currentLang].stats.peopleHelped }}</div>
           </div>
           <div class="stat">
             <div class="stat-number">{{ stats.counselors }}+</div>
-            <div class="stat-label">Abajyanama</div>
+            <div class="stat-label">{{ translations[currentLang].stats.counselors }}</div>
           </div>
           <div class="stat">
             <div class="stat-number">{{ stats.availability }}</div>
-            <div class="stat-label">Ubufasha</div>
+            <div class="stat-label">{{ translations[currentLang].stats.support }}</div>
           </div>
         </div>
       </div>
@@ -73,15 +97,15 @@
 
           <div class="hero-card card-1">
             <div class="card-icon">💚</div>
-            <div class="card-text">Ubufasha bw'uburyo</div>
+            <div class="card-text">{{ translations[currentLang].cards.professional }}</div>
           </div>
           <div class="hero-card card-2">
             <div class="card-icon">🤝</div>
-            <div class="card-text">Umuryango w'ubwigenge</div>
+            <div class="card-text">{{ translations[currentLang].cards.community }}</div>
           </div>
           <div class="hero-card card-3">
             <div class="card-icon">🌟</div>
-            <div class="card-text">Ubuzima bwiza</div>
+            <div class="card-text">{{ translations[currentLang].cards.wellness }}</div>
           </div>
         </div>
       </div>
@@ -91,14 +115,14 @@
   <!-- SERVICES SECTION -->
   <section class="services" id="services">
     <div class="section-header">
-      <h2 class="section-title">Serivisi zacu</h2>
+      <h2 class="section-title">{{ translations[currentLang].services.title }}</h2>
       <p class="section-subtitle">
-        Turatanga serivisi zitandukanye zo gufasha ubuzima bwawe bwo mu mutwe
+        {{ translations[currentLang].services.subtitle }}
       </p>
     </div>
 
     <div class="services-grid">
-      <div class="service-card" *ngFor="let service of services">
+      <div class="service-card" *ngFor="let service of getCurrentServices()">
         <div class="service-icon" [innerHTML]="service.icon"></div>
         <h3>{{ service.title }}</h3>
         <p>{{ service.description }}</p>
@@ -111,27 +135,29 @@
     <div class="community-content">
       
       <div class="community-left">
-        <h2 class="section-title">Umuryango wacu</h2>
+        <h2 class="section-title">{{ translations[currentLang].community.title }}</h2>
         <p class="community-text">
-          Ihumure ni ukwikuramo aho abantu bahura, basangira, kandi bashyigikirane. 
-          Umuryango wacu urakomeye kandi ugizwe n'abantu bafite ibibazo bitandukanye 
-          ariko bafite intego imwe - kubaka ubuzima bwiza bwo mu mutwe.
+          {{ translations[currentLang].community.description }}
         </p>
 
         <ul class="community-features">
-          <li *ngFor="let feature of communityFeatures">
+          <li *ngFor="let feature of getCurrentFeatures()">
             <span class="feature-icon">✓</span>
             <span>{{ feature }}</span>
           </li>
         </ul>
 
-        <button class="btn-community" (click)="onJoinCommunity()">Jya mu muryango</button>
+        <button class="btn-community" (click)="onJoinCommunity()">
+          {{ translations[currentLang].community.button }}
+        </button>
       </div>
 
       <div class="community-right">
         <div class="testimonial-card">
           <div class="testimonial-quote">"</div>
-          <p class="testimonial-text">{{ testimonial.text }}</p>
+          <p class="testimonial-text">
+            {{ translations[currentLang].testimonial.text }}
+          </p>
           <div class="testimonial-author">
             <div class="author-avatar">{{ testimonial.authorInitial }}</div>
             <div class="author-info">
@@ -147,9 +173,15 @@
   <!-- CTA SECTION -->
   <section class="cta">
     <div class="cta-content">
-      <h2 class="cta-title">Tangira urugendo rwawe rwo kwita ku buzima bwawe bwo mu mutwe</h2>
-      <p class="cta-text">Jya muri Ihumure ubu kandi utangire kubona ubufasha ukeneye</p>
-      <button class="btn-cta" (click)="onCreateAccount()">Fungura konti yawe</button>
+      <h2 class="cta-title">
+        {{ translations[currentLang].cta.title }}
+      </h2>
+      <p class="cta-text">
+        {{ translations[currentLang].cta.text }}
+      </p>
+      <button class="btn-cta" (click)="onCreateAccount()">
+        {{ translations[currentLang].cta.button }}
+      </button>
     </div>
     <div class="cta-pattern"></div>
   </section>
@@ -169,42 +201,42 @@
           <span class="logo-text">Ihumure</span>
         </div>
         <p class="footer-description">
-          Ubufasha mu buzima bwo mu mutwe n'umuryango ushyigikira abantu b'u Rwanda.
+          {{ translations[currentLang].footer.description }}
         </p>
       </div>
 
       <div class="footer-column">
-        <h4>Serivisi</h4>
+        <h4>{{ translations[currentLang].footer.servicesTitle }}</h4>
         <ul>
-          <li><a href="#" (click)="navigateTo('counseling', $event)">Ubujyanama</a></li>
-          <li><a href="#" (click)="navigateTo('groups', $event)">Amatsinda</a></li>
-          <li><a href="#" (click)="navigateTo('resources', $event)">Amakuru</a></li>
-          <li><a href="#" (click)="navigateTo('tools', $event)">Ibikoresho</a></li>
+          <li><a href="#" (click)="navigateTo('counseling', $event)">{{ translations[currentLang].footer.counseling }}</a></li>
+          <li><a href="#" (click)="navigateTo('groups', $event)">{{ translations[currentLang].footer.groups }}</a></li>
+          <li><a href="#" (click)="navigateTo('resources', $event)">{{ translations[currentLang].footer.resources }}</a></li>
+          <li><a href="#" (click)="navigateTo('tools', $event)">{{ translations[currentLang].footer.tools }}</a></li>
         </ul>
       </div>
 
       <div class="footer-column">
-        <h4>Kumenyekanisha</h4>
+        <h4>{{ translations[currentLang].footer.aboutTitle }}</h4>
         <ul>
-          <li><a href="#" (click)="navigateTo('about', $event)">Abo turi</a></li>
-          <li><a href="#" (click)="navigateTo('team', $event)">Ikipe</a></li>
-          <li><a href="#" (click)="navigateTo('press', $event)">Amakuru y'itangazamakuru</a></li>
-          <li><a href="#" (click)="navigateTo('contact', $event)">Twandikire</a></li>
+          <li><a href="#" (click)="navigateTo('about', $event)">{{ translations[currentLang].footer.about }}</a></li>
+          <li><a href="#" (click)="navigateTo('team', $event)">{{ translations[currentLang].footer.team }}</a></li>
+          <li><a href="#" (click)="navigateTo('press', $event)">{{ translations[currentLang].footer.press }}</a></li>
+          <li><a href="#" (click)="navigateTo('contact', $event)">{{ translations[currentLang].footer.contact }}</a></li>
         </ul>
       </div>
 
       <div class="footer-column">
-        <h4>Dufatanye</h4>
+        <h4>{{ translations[currentLang].footer.contactTitle }}</h4>
         <ul>
-          <li><a href="mailto:contact@ihumure.rw">contact@ihumure.rw</a></li>
-          <li><a href="tel:+250788000000">+250 788 000 000</a></li>
+          <li><a href="mailto:info@ihumure.rw">info@ihumure.rw</a></li>
+          <li><a href="tel:+250788000000">+250 780 484 427</a></li>
           <li><a>Kigali, Rwanda</a></li>
         </ul>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; {{ currentYear }} Ihumure. Uburenganzira bwose burahawe.</p>
+      <p>&copy; {{ currentYear }} Ihumure. {{ translations[currentLang].footer.rights }}</p>
     </div>
   </footer>
 
