@@ -1,0 +1,78 @@
+<div class="services-page" [attr.data-theme]="currentTheme">
+  
+  <!-- Hero Section -->
+  <section class="page-hero">
+    <div class="hero-content">
+      <h1 class="page-title">{{ translations[currentLang].title }}</h1>
+      <p class="page-subtitle">{{ translations[currentLang].subtitle }}</p>
+    </div>
+    <div class="hero-decoration">
+      <div class="deco-circle circle-1"></div>
+      <div class="deco-circle circle-2"></div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="services-section">
+    <div class="services-container">
+      
+      <!-- Service Card 1: Private Counseling -->
+      <div class="service-detail-card" *ngFor="let service of getCurrentServices(); let i = index">
+        <div class="service-badge">
+          <span class="badge-icon">{{ service.badge }}</span>
+        </div>
+        <div class="service-icon-large" [innerHTML]="service.icon"></div>
+        <h2 class="service-title">{{ service.title }}</h2>
+        <p class="service-description">{{ service.description }}</p>
+        
+        <div class="service-features">
+          <h3>{{ translations[currentLang].features }}</h3>
+          <ul>
+            <li *ngFor="let feature of service.features">
+              <span class="check-icon">✓</span>
+              <span>{{ feature }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="service-pricing" *ngIf="service.pricing">
+          <div class="price-tag">
+            <span class="price">{{ service.pricing.amount }}</span>
+            <span class="period">{{ service.pricing.period }}</span>
+          </div>
+          <p class="pricing-note">{{ service.pricing.note }}</p>
+        </div>
+
+        <button class="btn-service" (click)="bookService(service.id)">
+          {{ service.buttonText }}
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works">
+    <h2 class="section-title">{{ translations[currentLang].howItWorksTitle }}</h2>
+    <div class="steps-grid">
+      <div class="step-card" *ngFor="let step of getCurrentSteps(); let i = index">
+        <div class="step-number">{{ i + 1 }}</div>
+        <div class="step-icon">{{ step.icon }}</div>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="services-cta">
+    <div class="cta-content">
+      <h2>{{ translations[currentLang].ctaTitle }}</h2>
+      <p>{{ translations[currentLang].ctaText }}</p>
+      <button class="btn-cta-large" (click)="onGetStarted()">
+        {{ translations[currentLang].ctaButton }}
+      </button>
+    </div>
+  </section>
+
+</div>

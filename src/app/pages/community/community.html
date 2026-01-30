@@ -1,0 +1,97 @@
+<div class="community-page" [attr.data-theme]="currentTheme">
+  
+  <!-- Hero Section -->
+  <section class="page-hero">
+    <div class="hero-content">
+      <h1 class="page-title">{{ translations[currentLang].title }}</h1>
+      <p class="page-subtitle">{{ translations[currentLang].subtitle }}</p>
+      <button class="btn-hero" (click)="onJoinCommunity()">
+        {{ translations[currentLang].joinButton }}
+      </button>
+    </div>
+  </section>
+
+  <!-- Community Stats -->
+  <section class="community-stats">
+    <div class="stats-grid">
+      <div class="stat-box" *ngFor="let stat of stats">
+        <div class="stat-icon">{{ stat.icon }}</div>
+        <div class="stat-number">{{ stat.number }}</div>
+        <div class="stat-label">{{ getCurrentStatLabel(stat.key) }}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Support Groups -->
+  <section class="support-groups">
+    <h2 class="section-title">{{ translations[currentLang].groupsTitle }}</h2>
+    <p class="section-subtitle">{{ translations[currentLang].groupsSubtitle }}</p>
+    
+    <div class="groups-grid">
+      <div class="group-card" *ngFor="let group of getCurrentGroups()">
+        <div class="group-header">
+          <div class="group-icon">{{ group.icon }}</div>
+          <span class="group-badge">{{ group.members }} {{ translations[currentLang].members }}</span>
+        </div>
+        <h3>{{ group.name }}</h3>
+        <p>{{ group.description }}</p>
+        <div class="group-schedule">
+          <span class="schedule-icon">📅</span>
+          <span>{{ group.schedule }}</span>
+        </div>
+        <button class="btn-join-group" (click)="joinGroup(group.id)">
+          {{ translations[currentLang].joinGroupButton }}
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community Guidelines -->
+  <section class="guidelines">
+    <div class="guidelines-container">
+      <div class="guidelines-left">
+        <h2 class="section-title">{{ translations[currentLang].guidelinesTitle }}</h2>
+        <p class="guidelines-intro">{{ translations[currentLang].guidelinesIntro }}</p>
+      </div>
+      <div class="guidelines-right">
+        <div class="guideline-item" *ngFor="let guideline of getCurrentGuidelines()">
+          <div class="guideline-icon">{{ guideline.icon }}</div>
+          <div class="guideline-content">
+            <h4>{{ guideline.title }}</h4>
+            <p>{{ guideline.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials-section">
+    <h2 class="section-title">{{ translations[currentLang].testimonialsTitle }}</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card" *ngFor="let testimonial of getCurrentTestimonials()">
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">{{ testimonial.text }}</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">{{ testimonial.initial }}</div>
+          <div class="author-info">
+            <div class="author-name">{{ testimonial.name }}</div>
+            <div class="author-group">{{ testimonial.group }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="community-cta">
+    <div class="cta-content">
+      <h2>{{ translations[currentLang].ctaTitle }}</h2>
+      <p>{{ translations[currentLang].ctaText }}</p>
+      <button class="btn-cta-large" (click)="onJoinCommunity()">
+        {{ translations[currentLang].ctaButton }}
+      </button>
+    </div>
+  </section>
+
+</div>
