@@ -15,34 +15,27 @@
     </div>
 
     <div class="nav-links">
-      <a href="#services" (click)="scrollToSection('services', $event)">
+      <a [routerLink]="['/services']">
         {{ currentLang === 'rw' ? 'Serivisi' : 'Services' }}
       </a>
-      <a href="#community" (click)="scrollToSection('community', $event)">
+      <a [routerLink]="['/community']">
         {{ currentLang === 'rw' ? 'Umuryango' : 'Community' }}
       </a>
-      <a href="#resources" (click)="scrollToSection('resources', $event)">
+      <a [routerLink]="['/resources']">
         {{ currentLang === 'rw' ? 'Ubufasha' : 'Resources' }}
       </a>
-      <a href="#about" (click)="scrollToSection('about', $event)">
+      <a [routerLink]="['/about']">
         {{ currentLang === 'rw' ? 'Abo turi' : 'About Us' }}
       </a>
-      
-      <!-- Theme Toggle -->
-      <button class="theme-toggle" (click)="toggleTheme()" [title]="currentTheme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'">
-        <span *ngIf="currentTheme === 'light'">🌙</span>
-        <span *ngIf="currentTheme === 'dark'">☀️</span>
-      </button>
-      
-      <!-- Language Toggle -->
-      <button class="lang-toggle" (click)="toggleLanguage()">
-        {{ currentLang === 'rw' ? 'EN' : 'RW' }}
-      </button>
-      
-      <button class="btn-primary" (click)="onLogin()">
-        {{ currentLang === 'rw' ? 'Injira' : 'Login' }}
-      </button>
-    </div>
+  
+  <!-- Theme & Language toggles stay the same -->
+  <button class="theme-toggle" (click)="toggleTheme()">...</button>
+  <button class="lang-toggle" (click)="toggleLanguage()">...</button>
+  
+  <button class="btn-primary" [routerLink]="['/login']">
+    {{ currentLang === 'rw' ? 'Injira' : 'Login' }}
+  </button>
+</div>
 
     <button class="mobile-menu-btn" (click)="toggleMobileMenu()">
       <span class="menu-icon"></span>
@@ -205,23 +198,21 @@
         </p>
       </div>
 
+      <!-- Footer Services Column -->
       <div class="footer-column">
         <h4>{{ translations[currentLang].footer.servicesTitle }}</h4>
         <ul>
-          <li><a href="#" (click)="navigateTo('counseling', $event)">{{ translations[currentLang].footer.counseling }}</a></li>
-          <li><a href="#" (click)="navigateTo('groups', $event)">{{ translations[currentLang].footer.groups }}</a></li>
-          <li><a href="#" (click)="navigateTo('resources', $event)">{{ translations[currentLang].footer.resources }}</a></li>
-          <li><a href="#" (click)="navigateTo('tools', $event)">{{ translations[currentLang].footer.tools }}</a></li>
+          <li><a [routerLink]="['/services']">{{ translations[currentLang].footer.counseling }}</a></li>
+          <li><a [routerLink]="['/community']">{{ translations[currentLang].footer.groups }}</a></li>
+          <li><a [routerLink]="['/resources']">{{ translations[currentLang].footer.resources }}</a></li>
         </ul>
       </div>
 
+<!-- Footer About Column -->
       <div class="footer-column">
         <h4>{{ translations[currentLang].footer.aboutTitle }}</h4>
         <ul>
-          <li><a href="#" (click)="navigateTo('about', $event)">{{ translations[currentLang].footer.about }}</a></li>
-          <li><a href="#" (click)="navigateTo('team', $event)">{{ translations[currentLang].footer.team }}</a></li>
-          <li><a href="#" (click)="navigateTo('press', $event)">{{ translations[currentLang].footer.press }}</a></li>
-          <li><a href="#" (click)="navigateTo('contact', $event)">{{ translations[currentLang].footer.contact }}</a></li>
+          <li><a [routerLink]="['/about']">{{ translations[currentLang].footer.about }}</a></li>
         </ul>
       </div>
 
