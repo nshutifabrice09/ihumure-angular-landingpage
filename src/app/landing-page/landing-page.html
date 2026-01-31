@@ -29,8 +29,14 @@
       </a>
   
   <!-- Theme & Language toggles stay the same -->
-  <button class="theme-toggle" (click)="toggleTheme()">...</button>
-  <button class="lang-toggle" (click)="toggleLanguage()">...</button>
+    <button class="theme-toggle" (click)="toggleTheme()" [title]="currentTheme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'">
+      <span *ngIf="currentTheme === 'light'">🌙</span>
+      <span *ngIf="currentTheme === 'dark'">☀️</span>
+    </button>
+
+    <button class="lang-toggle" (click)="toggleLanguage()">
+        {{ currentLang === 'rw' ? 'EN' : 'RW' }}
+    </button>
   
   <button class="btn-primary" [routerLink]="['/login']">
     {{ currentLang === 'rw' ? 'Injira' : 'Login' }}

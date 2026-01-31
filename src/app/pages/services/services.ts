@@ -14,6 +14,29 @@ export class Services implements OnInit {
   currentLang: 'rw' | 'en' = 'rw';
   currentTheme: 'light' | 'dark' = 'light';
 
+  // Service icons (reusable)
+  private serviceIcons = {
+    counseling: `<svg viewBox="0 0 60 60" fill="none">
+                  <circle cx="30" cy="30" r="25" stroke="currentColor" stroke-width="2"/>
+                  <path d="M30 15 L30 30 L40 40" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                </svg>`,
+    groups: `<svg viewBox="0 0 60 60" fill="none">
+              <rect x="10" y="10" width="40" height="40" rx="8" stroke="currentColor" stroke-width="2"/>
+              <circle cx="22" cy="25" r="5" fill="currentColor"/>
+              <circle cx="38" cy="25" r="5" fill="currentColor"/>
+              <path d="M20 38 Q30 43 40 38" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>`,
+    tracking: `<svg viewBox="0 0 60 60" fill="none">
+                <path d="M10 30 Q20 10, 30 30 T50 30" stroke="currentColor" stroke-width="2" fill="none"/>
+                <circle cx="30" cy="30" r="8" fill="currentColor"/>
+                <circle cx="10" cy="30" r="4" fill="currentColor"/>
+                <circle cx="50" cy="30" r="4" fill="currentColor"/>
+              </svg>`,
+    resources: `<svg viewBox="0 0 60 60" fill="none">
+                 <path d="M30 10 L35 25 L50 25 L38 35 L43 50 L30 40 L17 50 L22 35 L10 25 L25 25 Z" stroke="currentColor" stroke-width="2" fill="currentColor" opacity="0.3"/>
+               </svg>`
+  };
+
   translations = {
     rw: {
       title: 'Serivisi Zacu',
@@ -27,6 +50,7 @@ export class Services implements OnInit {
         {
           id: 1,
           badge: '🎯',
+          icon: this.serviceIcons.counseling,
           title: 'Ubujyanama bw\'umwihariko',
           description: 'Kubonana n\'abajyanama b\'inzobere mu buzima bwo mu mutwe bakubera ku buryo bw\'ibanga rirambye',
           features: [
@@ -45,6 +69,7 @@ export class Services implements OnInit {
         {
           id: 2,
           badge: '👥',
+          icon: this.serviceIcons.groups,
           title: 'Amatsinda y\'ubufasha',
           description: 'Jya muri amatsinda y\'abantu bafite ibibazo bimwe kandi mushyigikirane',
           features: [
@@ -63,6 +88,7 @@ export class Services implements OnInit {
         {
           id: 3,
           badge: '📊',
+          icon: this.serviceIcons.tracking,
           title: 'Gukurikirana iterambere',
           description: 'Koresha ibikoresho by\'ikoranabuhanga kugira ngo ukurikire iterambere ryawe mu buzima',
           features: [
@@ -81,6 +107,7 @@ export class Services implements OnInit {
         {
           id: 4,
           badge: '📚',
+          icon: this.serviceIcons.resources,
           title: 'Amakuru n\'amabwiriza',
           description: 'Soma inyandiko, video, n\'izindi mfashanyigisho ku buzima bwo mu mutwe',
           features: [
@@ -132,6 +159,7 @@ export class Services implements OnInit {
         {
           id: 1,
           badge: '🎯',
+          icon: this.serviceIcons.counseling,
           title: 'Private Counseling',
           description: 'Connect with expert mental health counselors in confidential one-on-one sessions',
           features: [
@@ -150,6 +178,7 @@ export class Services implements OnInit {
         {
           id: 2,
           badge: '👥',
+          icon: this.serviceIcons.groups,
           title: 'Support Groups',
           description: 'Join groups with people facing similar challenges for mutual support',
           features: [
@@ -168,6 +197,7 @@ export class Services implements OnInit {
         {
           id: 3,
           badge: '📊',
+          icon: this.serviceIcons.tracking,
           title: 'Progress Tracking',
           description: 'Use digital tools to monitor your mental health progress and growth',
           features: [
@@ -186,6 +216,7 @@ export class Services implements OnInit {
         {
           id: 4,
           badge: '📚',
+          icon: this.serviceIcons.resources,
           title: 'Resources & Education',
           description: 'Access articles, videos, and educational materials on mental health',
           features: [
