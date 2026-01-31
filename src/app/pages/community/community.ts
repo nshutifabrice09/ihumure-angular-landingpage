@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './community.html',
   styleUrls: ['./community.css']
 })
-export class CommunityComponent implements OnInit {
+export class Community implements OnInit {
   
   currentLang: 'rw' | 'en' = 'rw';
   currentTheme: 'light' | 'dark' = 'light';
